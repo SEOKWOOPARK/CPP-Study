@@ -46,8 +46,8 @@ int main() {
     // ------------------------------------------------------------
 
     string foods[] = {"pizza a", "hamburger", "hotdog"};
-    int size = sizeof(foods) / sizeof(foods[0]);
-    int index;
+    int size1 = sizeof(foods) / sizeof(foods[0]);
+    int index1;
     string target_food;
 
     cout << "Enter food type: ";
@@ -58,10 +58,10 @@ int main() {
     getline(cin, target_food);
 
 
-    index = searchArray2(foods, size, target_food);
+    index1 = searchArray2(foods, size1, target_food);
 
-    if (index != -1) {
-        cout << target_food << " is at index " << index << endl;
+    if (index1 != -1) {
+        cout << target_food << " is at index " << index1 << endl;
     }
     else {
         cout << "Element not found" << endl;

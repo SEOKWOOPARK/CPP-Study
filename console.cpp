@@ -5,7 +5,7 @@
 
 using namespace  std;
 
-int console() {
+void console() {
     double sales = 95000;
 
     const double state_tax_rate = .04;
@@ -54,8 +54,6 @@ int console() {
     short second = (rand() %  (max_value - min_value)) + min_value;
 
     cout << first << ", " << second << endl;
-
-
 }
 
 int main() {
