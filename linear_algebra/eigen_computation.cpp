@@ -55,13 +55,6 @@ int main() {
     cout << p_r3_result.transpose() << endl;
     cout << p_r4_result.transpose() << endl;
 
-
-
-
-
     cout << "---------------------------" << endl;
-
-
-
 
 }
