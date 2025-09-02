@@ -14,7 +14,9 @@ T add (T a, T b) {
     return a + b;
 }
 
-template <typename T> // Declaring a class template with a type parameter T for instantiation like Vector2D<int> or Vector2D<double>
+// Class template
+// Declaring a class template with a type parameter T for instantiation like Vector2D<int> or Vector2D<double>
+template <typename T>
 class Vector2D {
 public: // Accessible to members, constructor and methods
 
@@ -22,11 +24,11 @@ public: // Accessible to members, constructor and methods
 
     Vector2D(T x, T y): x(x), y(y) {} // Member(Constructor param)
 
-    T lengthWithTemplateReturnType() {
+    T lengthWithTemplateReturnType() { // Getting for Euclidean length
         return sqrt(x * x + y * y);
     }
 
-    // Use hypot for better numerical behavior and return a floating result.
+    // Use hypot for better numerical behavior and return a floating result. If this function returns 'int', that's going to be truncated
     auto lengthWithAutoReturnType() const noexcept {
         using R = std::common_type<T, double>;
         return hypot(static_cast<R>(x), static_cast<R>(y));
@@ -47,9 +49,6 @@ int main() {
 
     cout << vi.length() << endl;
     cout << vd.length() << endl;
-
-
-
 
     return 0;
 }
