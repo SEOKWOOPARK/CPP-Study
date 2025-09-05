@@ -5,12 +5,14 @@ using namespace Eigen;
 using namespace std;
 
 // Variadic template: To take any number of argument
+// Reference document -> https://en.cppreference.com/w/cpp/language/parameter_pack.html
 template <typename... Args>
 void printAll(Args... args) {
     (cout << ... << args) << endl;
 }
 
 // Template Alias1: Providing shortcuts for long template names
+// Reference document -> https://en.cppreference.com/w/cpp/language/type_alias.html
 template <typename T>
 using vec_size_3 = array<T, 3>;
 
