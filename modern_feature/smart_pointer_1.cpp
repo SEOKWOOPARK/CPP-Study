@@ -56,7 +56,7 @@ int main() {
 
     // This object can only be shared by one owner. Copying it is now allowed -> 'move' to transfer ownership
     // When using a smart pointer, method can be called by '->'
-    unique_ptr<Dog> d2 = move(d1);
+    unique_ptr<Dog> d2 = std::move(d1);
     d2 -> running();
 
     cout << "----------------------" << endl;

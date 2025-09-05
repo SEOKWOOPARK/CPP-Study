@@ -4,7 +4,6 @@
 
 using namespace std;
 
-
 // Template: Allowing to write generalized to code that does not depend on specific data types.
 // Reference document -> https://en.cppreference.com/w/cpp/language/templates.html
 
@@ -46,9 +45,6 @@ int main() {
     cout << "Class template" << endl;
     Vector2D<int> vi = {1, 2};
     Vector2D<double> vd = Vector2D<double>(1.0, 3.0);
-
-    cout << vi.length() << endl;
-    cout << vd.length() << endl;
 
     return 0;
 }
