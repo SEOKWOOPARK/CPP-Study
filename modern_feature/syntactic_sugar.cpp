@@ -2,26 +2,25 @@
 #include <iostream>
 // #include <array>
 #include <map>
-#include <cstddef>
 
 using namespace std;
 
 // Reference(Range-based for): https://en.cppreference.com/w/cpp/language/range-for.html
 // Reference(auto): https://en.cppreference.com/w/cpp/language/auto.html
 // Reference(Structured binding): https://en.cppreference.com/w/cpp/language/structured_binding.html
-
+// Reference(constexpr): https://en.cppreference.com/w/cpp/language/constexpr.html
 constexpr int square(int x) {
     return x * x;
 }
 
 template <size_t N, size_t... I>
-constexpr std::array<int, N> make_iota_array_impl(std::index_sequence<I...>) {
+constexpr array<int, N> make_iota_array_impl(index_sequence<I...>) {
     return { static_cast<int>(I)... };
 }
 
 template <size_t N>
-constexpr std::array<int, N> iota_array() {
-    return make_iota_array_impl<N>(std::make_index_sequence<N>{});
+constexpr array<int, N> iota_array() {
+    return make_iota_array_impl<N>(make_index_sequence<N>{});
 }
 
 int main() {
@@ -92,18 +91,17 @@ int main() {
     // Topic 3: constexpr
     // This marks a variable or function as being eligible for compile-time evaluation
     // When inputs are constant expressions -> the result would be computed at compile time
-
-    // If the inpputs are now kno
+    // If the inputs are not known until runtime, the same function still works at runtime.
 
     constexpr int a = square(5); // Precomputed in compile time
     int b = 7;
     int c = square(b); // It can be only computed in run time since input b is assigned in run time
 
-    std::cout << a << ' ' << b << ' ' << c << endl;
+    cout << a << ' ' << b << ' ' << c << endl;
 
     constexpr array<int, 5> arr = iota_array<5>();
     static_assert(arr[4] == 4);
-    std::cout << "arr[4] is: " << arr[4] << std::endl;
+    cout << "arr[4] is: " << arr[4] << endl;
 
     return 0;
 }
