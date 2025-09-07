@@ -1,14 +1,31 @@
 #include <vector>
 #include <iostream>
+// #include <array>
 #include <map>
+#include <cstddef>
 
 using namespace std;
 
 // Reference(Range-based for): https://en.cppreference.com/w/cpp/language/range-for.html
 // Reference(auto): https://en.cppreference.com/w/cpp/language/auto.html
 // Reference(Structured binding): https://en.cppreference.com/w/cpp/language/structured_binding.html
+
+constexpr int square(int x) {
+    return x * x;
+}
+
+template <size_t N, size_t... I>
+constexpr std::array<int, N> make_iota_array_impl(std::index_sequence<I...>) {
+    return { static_cast<int>(I)... };
+}
+
+template <size_t N>
+constexpr std::array<int, N> iota_array() {
+    return make_iota_array_impl<N>(std::make_index_sequence<N>{});
+}
+
 int main() {
-    // Range-based for
+    // Topic 1: Range-based for
 
     vector<int> v1 = {1,2,3,4,5};
 
@@ -40,7 +57,7 @@ int main() {
     cout << endl;
     cout << "------------------------" << endl;
 
-    // auto (type deduction)
+    // Topic 2: auto (type deduction)
 
     map<string, int> m1 = {{"one", 1}, {"two", 2}};
 
@@ -70,6 +87,23 @@ int main() {
         cout << name << " is " << age << endl;
     }
 
+    cout << "------------------------" << endl;
+
+    // Topic 3: constexpr
+    // This marks a variable or function as being eligible for compile-time evaluation
+    // When inputs are constant expressions -> the result would be computed at compile time
+
+    // If the inpputs are now kno
+
+    constexpr int a = square(5); // Precomputed in compile time
+    int b = 7;
+    int c = square(b); // It can be only computed in run time since input b is assigned in run time
+
+    std::cout << a << ' ' << b << ' ' << c << endl;
+
+    constexpr array<int, 5> arr = iota_array<5>();
+    static_assert(arr[4] == 4);
+    std::cout << "arr[4] is: " << arr[4] << std::endl;
 
     return 0;
 }
