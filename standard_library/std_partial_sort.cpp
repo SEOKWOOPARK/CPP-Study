@@ -8,6 +8,8 @@ using namespace std;
 // The remaining [mid, last) elements are left in unspecificed order
 // Internally uses a heap-based algorithm
 // n = total size, k = mid - first -> O(n log k)
+// Reference(https://en.cppreference.com/w/cpp/algorithm/partial_sort.html?utm_source=chatgpt.com)
+
 int main() {
     vector<int> v1 = {9, 1, 5, 3, 7, 2, 6, 8, 4};
 
