@@ -9,6 +9,8 @@ private:
         cout << "Singleton constructor" << endl;
     }
 
+    // default: Compiler generates the default implementation of a constructor, destructor, or operator instead of writing it manually
+    // When constructor is not declared by a developer, it is assigned in public
     ~Singleton() = default;
 
     Singleton(const Singleton&) = delete;
