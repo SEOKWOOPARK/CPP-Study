@@ -19,6 +19,9 @@ private:
     // const Singleton&: meaning copy constructor. Keeping the original object while generating a new object
     Singleton(const Singleton&) = delete;
 
+    // This line disables the copy assignment constructor.
+    // **copy assignment operator** -> A special operator function called when an already existing object is assigned the value of another object
+    // T& operator=(const T& other): Basic form
     Singleton& operator=(const Singleton&) = delete;
 
     Singleton(Singleton&&) = delete;
