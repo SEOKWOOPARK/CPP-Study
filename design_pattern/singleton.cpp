@@ -13,8 +13,14 @@ private:
     // When constructor is not declared by a developer, it is assigned in public
     ~Singleton() = default;
 
+    // This line disables the copy constructor.
+    // The compiler will reject any attempt to cpy the object
+    // delete: prevents the functino from being called
+    // const Singleton&: meaning copy constructor. Keeping the original object while generating a new object
     Singleton(const Singleton&) = delete;
+
     Singleton& operator=(const Singleton&) = delete;
+
     Singleton(Singleton&&) = delete;
     Singleton& operator=(Singleton&&) = delete;
 
