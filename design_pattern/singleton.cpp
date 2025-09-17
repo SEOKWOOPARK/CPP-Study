@@ -24,7 +24,14 @@ private:
     // T& operator=(const T& other): Basic form
     Singleton& operator=(const Singleton&) = delete;
 
+    // 'move constructor' is being explicitly disabled
+    // **move constructor** -> allows one object to steal the resources of another temporary object (an rvalue), instead of copying
+    // T(T&& other): Basic form
+    // other → the actual source object you’re “moving from”
+    // Without 'other' parameter, it means that 'this function exists but can never be used'
+
     Singleton(Singleton&&) = delete;
+
     Singleton& operator=(Singleton&&) = delete;
 
 public:
@@ -43,6 +50,11 @@ int main() {
     auto& s2 = Singleton::getInstance();
 
     s1.doSomething();
+
+    string a = "Hello";
+    string b = move(a); // b takes ownership of the memory for a
+    cout << a << endl;
+    cout << b << endl;
 
     cout << "Are they same? " << boolalpha << (&s1 == &s2) << endl;
 }
