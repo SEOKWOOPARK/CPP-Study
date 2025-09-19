@@ -3,6 +3,11 @@
 
 using namespace std;
 
+// Reference for Singleton 1: https://en.wikipedia.org/wiki/Singleton_pattern
+// Reference for Singleton 2: https://refactoring.guru/design-patterns/singleton/cpp/example
+// Reference for Constructor 1: https://learn.microsoft.com/en-us/cpp/cpp/constructors-cpp?view=msvc-170
+// Reference for Constructor 2: https://en.cppreference.com/w/cpp/language/copy_constructor.html
+
 class Singleton {
 private:
     Singleton() {
@@ -19,7 +24,7 @@ private:
     // const Singleton&: meaning copy constructor. Keeping the original object while generating a new object
     Singleton(const Singleton&) = delete;
 
-    // This line disables the copy assignment constructor.
+    // This line disables the copy assignment operator.
     // **copy assignment operator** -> A special operator function called when an already existing object is assigned the value of another object
     // T& operator=(const T& other): Basic form
     Singleton& operator=(const Singleton&) = delete;
@@ -31,8 +36,8 @@ private:
     // Without 'other' parameter, it means that 'this function exists but can never be used'
     Singleton(Singleton&&) = delete;
 
-    // 'move assignment constructor' is being explicitly disabled
-    // **move constructor** -> assign (overwrite) an existing object with the resources of another object
+    // 'move assignment operator' is being explicitly disabled
+    // **move assignment operator** -> assign (overwrite) an existing object with the resources of another object
     // T& operator=(T&& other): Basic form
     // other → the actual source object you’re “moving from”
     Singleton& operator=(Singleton&&) = delete;
