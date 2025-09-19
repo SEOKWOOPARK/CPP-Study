@@ -29,9 +29,12 @@ private:
     // T(T&& other): Basic form
     // other → the actual source object you’re “moving from”
     // Without 'other' parameter, it means that 'this function exists but can never be used'
-
     Singleton(Singleton&&) = delete;
 
+    // 'move assignment constructor' is being explicitly disabled
+    // **move constructor** -> assign (overwrite) an existing object with the resources of another object
+    // T& operator=(T&& other): Basic form
+    // other → the actual source object you’re “moving from”
     Singleton& operator=(Singleton&&) = delete;
 
 public:
