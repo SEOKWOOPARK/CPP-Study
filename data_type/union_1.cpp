@@ -1,4 +1,6 @@
 #include <iostream>
+#include <variant>
+#include <any>
 
 using namespace std;
 
@@ -8,7 +10,8 @@ using namespace std;
 // Memory efficiency: only one member’s storage is needed.
 // Type reinterpretation: unions are sometimes used to look at the same bytes as different types
 
-// Reference:
+// Reference1(Union): https://en.cppreference.com/w/cpp/language/union.html
+// Reference2(alignof): https://en.cppreference.com/w/cpp/language/alignof.html
 
 union Data {
     int i; // Alignment 4
@@ -33,6 +36,28 @@ int main() {
     d.c = 'A';
     cout << "d.c = " << d.c << endl;
     cout << "d.i = " << d.i << endl;
+
+    cout << "------------------------------" << endl;
+    // Replacement for Union: variant (since C++ 17)
+    // It safely tracks which type is currently active.
+    variant<int, float, char> v;
+    v = 3.14f;
+
+    cout << get<float>(v) << endl;
+
+    cout << "------------------------------" << endl;
+
+    // Replacement for Union: any (since C++ 17)
+    // Useful when tye type is not known at compile time
+    any a = 2;
+    cout << any_cast<int>(a) << endl;
+    a = string("Hello World");
+    cout << any_cast<string>(a) << endl;
+
+    if (a.type() == typeid(string)) {
+        cout << "a is a string type" << endl;
+    }
+
 
     return 0;
 }
