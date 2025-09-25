@@ -6,7 +6,8 @@ using namespace std;
 
 // 'any' since C++17: Useful when the type is not known at compile time
 // Throws std::bad_any_cast when it's a wrong type
-
+// Reference1(any) :https://en.cppreference.com/w/cpp/utility/any.html
+// Reference2(any_cast): https://en.cppreference.com/w/cpp/utility/any/any_cast
 int main() {
 
     any a = 42; // A type-safe box that can hold one value of any copy-constructible type(a new object by copying an existing one)
