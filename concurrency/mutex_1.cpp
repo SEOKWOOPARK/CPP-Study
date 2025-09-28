@@ -9,6 +9,14 @@
 // The final outcome depends on the timing or interleaving of their operations
 
 
+// Reference 1(Mutex): https://en.cppreference.com/w/cpp/thread/mutex.html / https://cplusplus.com/reference/mutex/mutex/
+// Reference 2(lock_guard): https://en.cppreference.com/w/cpp/thread/lock_guard.html / https://cplusplus.com/reference/mutex/lock_guard/
+// Reference 2(unique_lock): https://en.cppreference.com/w/cpp/thread/unique_lock.html
+
+// Modern Operating Systems (Andrew S. Tanenbaum)
+// Linux Kernel Development (Robert Love)
+// https://www.youtube.com/@silvinahanonowachman3310/videos
+
 using namespace std;
 
 int counter = 0; // A shared variable between all threads
@@ -19,6 +27,9 @@ void increment(int id) {
         // lock on entry + unlock on exit
         // If another thread is already holding the lock, the current thread waits
         // When the lock object goes out of 'for' scope, it automatically unlocks the mutex(RAII pattern)
+
+        // From <mutex>, this is RAII (Resource Acquisition Is Initialization) wrapper.
+        // This locks the mutex immediately. And, out of scope, its destructor automatically unlocks the mutex
         lock_guard<mutex> lock(mtx);
 
         ++counter; // critical section: where shared resources are accessed or modified -> only one thread should execute it at once to avoid race conditions
