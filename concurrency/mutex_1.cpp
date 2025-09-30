@@ -16,6 +16,8 @@
 // Modern Operating Systems (Andrew S. Tanenbaum)
 // Linux Kernel Development (Robert Love)
 // https://www.youtube.com/@silvinahanonowachman3310/videos
+// Neso Academy (YouTube)
+// https://www.youtube.com/@JacobSorber/videos
 
 using namespace std;
 
