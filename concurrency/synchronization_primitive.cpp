@@ -7,11 +7,18 @@
 using namespace std;
 
 // Synchronization primitive -> signaling/events between threads
+// Mutex(mutual exclusion: only one thread can enter a critical section at once)
 // Producer-Consumer pattern
+// Reference1: https://en.cppreference.com/w/cpp/thread/condition_variable.html
+// Reference2: https://wiki.sei.cmu.edu/confluence/display/cplusplus/CON54-CPP.%2BWrap%2Bfunctions%2Bthat%2Bcan%2Bspuriously%2Bwake%2Bup%2Bin%2Ba%2Bloop
 
-mutex mtx;
-condition_variable cv;
-queue<int> q;
+// condition_variable: letting one or more threads wait until a certain condition is satisfied.
+// The thread responsible for the condition notify them once the condition is over.
+// This must always be used together with a mutex for correctness.
+
+mutex mtx; // single mutex protecting all shared state below
+condition_variable cv; // condition variable used to signal state changes
+queue<int> q; // shared queue: producer pushes, consumer pops
 bool done = false;
 
 void producer() {
@@ -21,13 +28,16 @@ void producer() {
             q.push(i);
             cout << "Produced " << i << endl;
         }
-        cv.notify_one();
+        cv.notify_one(); // wake one waiting consumer; lock is already released
     }
+    // lock_guard goes out of scope → unlocks
+
     {
-        lock_guard<mutex> lock(mtx);
-        done = true;
+        lock_guard<mutex> lock(mtx); // acquiring the mutex one more time
+        done = true; // update shared state: production finished
     }
-    cv.notify_all();
+    // unlock from this line
+    cv.notify_all(); // wake all waiters so they can observe done
 }
 
 void consumer() {
