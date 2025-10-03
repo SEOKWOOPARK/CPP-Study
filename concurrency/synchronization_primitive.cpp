@@ -8,7 +8,7 @@ using namespace std;
 
 // Synchronization primitive -> signaling/events between threads
 // Mutex(mutual exclusion: only one thread can enter a critical section at once)
-// Producer-Consumer pattern
+// Producer(Pushing data a queue) <-> Consumer(Popping data from a queue as soon as each producer trial is over)
 // Reference1: https://en.cppreference.com/w/cpp/thread/condition_variable.html
 // Reference2: https://wiki.sei.cmu.edu/confluence/display/cplusplus/CON54-CPP.%2BWrap%2Bfunctions%2Bthat%2Bcan%2Bspuriously%2Bwake%2Bup%2Bin%2Ba%2Bloop
 
@@ -42,14 +42,19 @@ void producer() {
 
 void consumer() {
     while (true) {
-        unique_lock<mutex> lock(mtx);
+        unique_lock<mutex> lock(mtx); // acquiring the mutex
+
+        // atomically: release lock and sleep
+        // when notified, re-acquire lock
+        // re-check predicate to guard spurious wakeups
         cv.wait(lock, []{ return !q.empty() || done; });
 
         if (!q.empty()) {
-            int val = q.front();
+            int val = q.front(); // read fron item under lock
             q.pop();
             cout << "Consumed " << val << endl;
-        } else if (done) {
+            // lock is released at end of scope; loop repeats to consume more
+        } else if (done) { // no item and production finished → exit loop
             break;
         }
     }
