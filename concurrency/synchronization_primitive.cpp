@@ -46,7 +46,7 @@ void consumer() {
 
         // atomically: release lock and sleep
         // when notified, re-acquire lock
-        // re-check predicate to guard spurious wakeups
+        // re-check predicate to guard spurious(fake) wakeup
         cv.wait(lock, []{ return !q.empty() || done; });
 
         if (!q.empty()) {
