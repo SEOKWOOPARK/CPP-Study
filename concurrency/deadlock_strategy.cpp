@@ -5,12 +5,21 @@
 
 using namespace std;
 
+// RAII(Resource Acquisition Is Initialization)
+// An RAII lock that can lock one or more mutexes at once, without deadlock
+
+
+
 struct Account {
+    // mutex m in the Account struct is the lock that protects the balance variable
+    // from being accessed by multiple threads at the same time
     mutex m;
     int balance = 0;
 };
 
 void transfer(Account & from, Account & to, int amount) {
+    // from.m & to.m -> They should be managed at the same time for concurrency
+    // Available for protecting operations
     scoped_lock lock(from.m, to.m);
     from.balance -= amount;
     to.balance += amount;
