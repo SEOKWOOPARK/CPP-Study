@@ -5,6 +5,7 @@ using namespace std;
 
 // T - O(n)
 // S - O(n)_
+// Brute Force -> O(n ** 2) can lead to time exceed.
 class Solution {
 public:
     vector<int> twoSum(vector<int> &nums, int target) {
