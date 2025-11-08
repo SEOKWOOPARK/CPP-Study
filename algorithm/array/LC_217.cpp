@@ -19,22 +19,4 @@ public:
         }
         return false;
     }
-
-    bool contain(vector<int>& nums) {
-        unordered_set<int> visited;
-
-        for (int n: nums) {
-            if (visited.count(n)) {
-                return true;
-            }
-
-            if (visited.count(n)) {
-                return true;
-            }
-
-            visited.insert(n);
-        }
-
-        return false;
-    }
 };
