@@ -1,3 +1,4 @@
+#include <iostream>
 #include <string>
 #include <vector>
 #include <unordered_map>
@@ -11,6 +12,11 @@ public:
         vector<string> words;
         string word;
 
+        // iss is an input string stream
+        // it allows to read from a string just like getting it from a file or standard input (cin).
+        // while (iss >> word) {
+        //     cout << word << endl;
+        // }
         istringstream iss(s);
 
         while (iss >> word) {
@@ -26,6 +32,9 @@ public:
 
         for (int i = 0; i < pattern.size(); i++) {
             char ch = pattern[i];
+            // w: a reference alias to words[i]
+            // No copy is made -> both w and words[i] point to the same thing
+            // const -> not capable of modifying the original string through w
             const string & w = words[i];
 
             if (char_to_word.count(ch)) {
