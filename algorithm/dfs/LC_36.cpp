@@ -2,6 +2,8 @@
 
 using namespace std;
 
+// T - O(1)
+// T - O(1)
 class Solution {
 public:
     bool isValidSudoku(vector<vector<char>>& board) {
