@@ -10,7 +10,7 @@ int searchArray1(int array[], int size, int element) {
         }
     }
 
-    return -1; // setinel value
+    return -1; // sentinel value
 }
 
 int searchArray2(string array[], int size, string element) {
@@ -22,7 +22,7 @@ int searchArray2(string array[], int size, string element) {
         }
     }
 
-    return -1; // setinel value
+    return -1; // sentinel value
 }
 
 int main() {
