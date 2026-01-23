@@ -62,7 +62,7 @@ int main() {
 
     cout << "----------------------" << endl;
 
-    // Class without a smart pointer -> a general class is stored in 'stack'
+    // Class without a smart pointer -> a general class(instance) is stored in 'stack'
     // Methods of a general class can be called by '.'
     Cat c;
     c.running();
