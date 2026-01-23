@@ -50,7 +50,8 @@ int main() {
     // And, Destructor is called -> helping prevent memory leaks
 
     // At this point,only d1 owns Dog class object
-    // make_unique creates an object on the heap and wrap the object inside a _unique_ptr
+    // 'make_unique' creates an object on the 'heap' and wrap the object inside a _unique_ptr
+    // Smart Pointer would be stored in 'stack'
     unique_ptr<Dog> d1 = make_unique<Dog>();
     d1 -> running();
 
@@ -61,8 +62,7 @@ int main() {
 
     cout << "----------------------" << endl;
 
-    // Class without a smart pointer
-
+    // Class without a smart pointer -> a general class is stored in 'stack'
     // Methods of a general class can be called by '.'
     Cat c;
     c.running();
