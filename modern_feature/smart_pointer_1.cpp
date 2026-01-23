@@ -45,7 +45,7 @@ public:
 int main() {
     // Class with a smart pointer: Preventing memory leaks
 
-    // Only one unique_ptr can manage a given obejct at a time
+    // Only one unique_ptr can manage a given object at a time
     // When the unique_ptr goes out of scope, it automatically deletes the object.
     // And, Destructor is called -> helping prevent memory leaks
 
