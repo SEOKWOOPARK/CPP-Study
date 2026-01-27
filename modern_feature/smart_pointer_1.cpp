@@ -50,13 +50,13 @@ int main() {
     // And, Destructor is called -> helping prevent memory leaks
 
     // At this point,only d1 owns Dog class object
-    // 'make_unique' creates an object on the 'heap' and wrap the object inside a _unique_ptr
+    // 'make_unique' creates an object on the 'heap' and wraps the object inside a _unique_ptr
     // Smart Pointer would be stored in 'stack'
     unique_ptr<Dog> d1 = make_unique<Dog>();
     d1 -> running();
 
-    // This object can only be shared by one owner. Copying it is now allowed -> 'move' to transfer ownership
-    // When using a smart pointer, method can be called by '->'
+    // This object can only be shared by one owner. Copying it is not allowed -> 'move' to transfer ownership
+    // When using a smart pointer, methods can be called by '->'
     unique_ptr<Dog> d2 = std::move(d1);
     d2 -> running();
 
