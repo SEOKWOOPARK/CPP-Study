@@ -2,9 +2,16 @@
 #include <iostream>
 #include <algorithm>
 
+// Reference for cv::Mat
+// https://docs.opencv.org/4.x/d6/d6d/tutorial_mat_the_basic_image_container.html
+// https://docs.opencv.org/4.x/d3/d63/classcv_1_1Mat.html
+
 int main() {
     // 1. Load image in grayscale
+    // cv::Mat -> Store the actual data (pixels / numbers) & Be used for general matrices (filters, transforms, feature descriptors)
+
     cv::Mat src = cv::imread("input.jpg", cv::IMREAD_GRAYSCALE);
+
     if (src.empty()) {
         std::cout << "Image load failed! Please check the file path." << std::endl;
         return -1;
