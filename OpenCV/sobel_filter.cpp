@@ -2,6 +2,8 @@
 #include <iostream>
 #include <algorithm>
 
+using namespace std;
+
 // Reference for cv::Mat
 // https://docs.opencv.org/4.x/d6/d6d/tutorial_mat_the_basic_image_container.html
 // https://docs.opencv.org/4.x/d3/d63/classcv_1_1Mat.html
@@ -21,6 +23,9 @@ int main() {
     cv::Mat gx_img = cv::Mat::zeros(src.size(), CV_8UC1);
     cv::Mat gy_img = cv::Mat::zeros(src.size(), CV_8UC1);
     cv::Mat mag_img = cv::Mat::zeros(src.size(), CV_8UC1);
+
+    cout << "Input -> (width, height) = " << src.size() << endl;
+    cout << "Input -> The total number of pixels = width * height = " << src.total() << endl;
 
     // 3. Sobel kernels
     int kx[3][3] = {
