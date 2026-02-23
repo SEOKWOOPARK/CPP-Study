@@ -10,7 +10,6 @@ using namespace std;
 
 int main() {
     // cv::Mat stores image data as a flat memory block internally, not a 2D array.
-    //
     cv::Mat src = cv::imread("input.jpg", cv::IMREAD_GRAYSCALE);
 
     if (src.empty()) {
