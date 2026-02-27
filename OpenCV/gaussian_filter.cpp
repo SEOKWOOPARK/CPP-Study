@@ -1,11 +1,13 @@
 #include <opencv2/opencv.hpp>
 #include <iostream>
-#include <cmath>
 
 using namespace std;
 using namespace cv;
 
+// Reference: https://docs.opencv.org/3.4/d1/d1b/group__core__hal__interface.html
+
 Mat createGaussianKernel(int kernel_size, double sigma) {
+    // CV_64F: 64-bits floating point
     Mat kernel(kernel_size, kernel_size, CV_64F);
     int center = kernel_size / 2;
     double sum = 0.0;
@@ -39,9 +41,9 @@ int main() {
     Mat destination1;
     GaussianBlur(src, destination1, Size(kernel_size, kernel_size), 0);
 
-    // imshow("Original", src);
-    // imshow("Gaussian Blur", destination1);
-    // waitKey(0);
+    imshow("Original", src);
+    imshow("Gaussian Blur", destination1);
+    waitKey(0);
 
     // ------------------------------------------------------------------------------------------------
 
