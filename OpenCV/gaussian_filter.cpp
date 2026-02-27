@@ -14,15 +14,19 @@ Mat createGaussianKernel(int kernel_size, double sigma) {
 
     for (int row = 0; row < kernel_size; row++) {
         for (int col = 0; col < kernel_size; col++) {
+            // Array index -> math representation
+            // Measuring distance from center in each direction
             int x = col - center;
             int y = row - center;
 
+            // Squared distance from center
             double value = exp(-(x * x + y * y) / (2.0 * sigma * sigma));
-            kernel.at<double>(row, col) = value;
+            kernel.at<double>(row, col) = value; // Stores the computed value at that position.
             sum += value;
         }
     }
 
+    // For normalization -> maintaining the output image brightness.
     kernel /= sum;
 
     return kernel;
