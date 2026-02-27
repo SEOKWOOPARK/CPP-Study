@@ -6,6 +6,22 @@ using namespace cv;
 
 // Reference: https://docs.opencv.org/3.4/d1/d1b/group__core__hal__interface.html
 
+Mat padImage(const Mat& src, int pad_size) {
+    Mat padded;
+
+    copyMakeBorder(
+        src,
+        padded,
+        pad_size,
+        pad_size,
+        pad_size,
+        pad_size,
+        BORDER_REFLECT
+        );
+
+    return padded;
+}
+
 Mat createGaussianKernel(int kernel_size, double sigma) {
     // CV_64F: 64-bits floating point
     Mat kernel(kernel_size, kernel_size, CV_64F);
