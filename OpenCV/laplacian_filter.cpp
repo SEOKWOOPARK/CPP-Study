@@ -33,6 +33,7 @@ Mat manualLaplacian(const Mat& src) {
             }
             // short: -32768 ~ 32767
             // uchar: 0 ~ 255
+            // saturate_cast<type>(n) -> Forcing n to be clamped based on 'type' and transforming n to 'type'
             lap16.at<short>(y, x) = saturate_cast<short>(sum);
         }
     }
