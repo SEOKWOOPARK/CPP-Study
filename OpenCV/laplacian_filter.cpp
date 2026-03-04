@@ -31,6 +31,8 @@ Mat manualLaplacian(const Mat& src) {
                     sum += pixel * weight;
                 }
             }
+            // short: -32768 ~ 32767
+            // uchar: 0 ~ 255
             lap16.at<short>(y, x) = saturate_cast<short>(sum);
         }
     }
