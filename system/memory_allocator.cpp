@@ -43,6 +43,23 @@ void* extend_heap(size_t size) {
 }
 
 
+void* my_malloc(size_t size) {
+    // traverse blocks
+    BlockHeader* current = (BlockHeader*)heap_start;
+
+    while ((void*)current < heap_end) {
+        if (current->free && current->size >= size) {
+            current->free = false;  // mark as used
+            return (void*)(current + 1);  // return data part
+        }
+        // move to next block
+        current = (BlockHeader*)((char*)(current + 1) + current->size);
+    }
+
+    // no free block found
+    return extend_heap(size);
+}
+
 int main() {
     // pointer variable in stack
     void* p1 = extend_heap(1024);
