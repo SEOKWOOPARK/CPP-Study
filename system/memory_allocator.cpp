@@ -43,6 +43,23 @@ void* extend_heap(size_t size) {
 }
 
 
+void* my_malloc(size_t size) {
+    // traverse blocks
+    BlockHeader* current = (BlockHeader*)heap_start;
+
+    while ((void*)current < heap_end) {
+        if (current->free && current->size >= size) {
+            current->free = false;  // mark as used
+            return (void*)(current + 1);  // return data part
+        }
+        // move to next block
+        current = (BlockHeader*)((char*)(current + 1) + current->size);
+    }
+
+    // no free block found
+    return extend_heap(size);
+}
+
 int main() {
     // pointer variable in stack
     void* p1 = extend_heap(1024);
@@ -53,6 +70,8 @@ int main() {
     cout << "p1: " << p1 << endl;
     cout << "p2: " << p2 << endl;
 
+    cout << "Stage 1 is over" << endl;
+
     cout << "----------------------------" << endl;
 
     BlockHeader* header = (BlockHeader*)heap_start;
@@ -60,7 +79,20 @@ int main() {
     assert(header->size == 1024);
     assert(header->free == false);
 
-    cout << "Header is assigned" << endl;
+    cout << "Stage 2 is over" << endl;
+
+    cout << "----------------------------" << endl;
+
+    void* p3 = my_malloc(1024);
+    void* p4 = my_malloc(512);
+
+    BlockHeader* h3 = (BlockHeader*)p3 - 1;
+    h3->free = true;
+
+    void* p5 = my_malloc(512);
+    assert(p5 == p3);
+
+    cout << "Stage 3 is over" << endl;
 
 
     return 0;
