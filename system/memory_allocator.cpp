@@ -94,7 +94,6 @@ int main() {
 
     cout << "Stage 3 is over" << endl;
 
-
     return 0;
 }
 
