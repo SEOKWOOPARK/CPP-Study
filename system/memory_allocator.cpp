@@ -28,7 +28,9 @@ void* extend_heap(size_t size) {
     }
 
     // prev_break (old break = start of new block = start of header)
-    // 'void*' just means "some address". No size, no fields, nothing.
+    // 'void*' just means "some address". No size, no fields, no type nothing.
+    // header(metadata for corresponding data) 16bytes = sizeof(BlockHeader), data 1024bytes = size
+    // [header][data] in a row, not separate.
     void* prev_break = sbrk(size + sizeof(BlockHeader));
 
     BlockHeader* header = (BlockHeader*)prev_break; // casting
@@ -38,7 +40,7 @@ void* extend_heap(size_t size) {
     heap_end = sbrk(0);
 
     // Returning data part to exclude header
-    // + 1 = 16 bytes = sizeof(BlockHeader) = Move forward by one unit of the pointer type
+    // + 1 = 16 bytes = sizeof(BlockHeader) = Move forward by one unit size of the pointer type
     return (void*)(header + 1);
 }
 
