@@ -74,8 +74,13 @@ void my_free(void* ptr) {
     }
 
     BlockHeader* header = (BlockHeader*)ptr - 1;
-
     header->free = true;
+    BlockHeader* next = (BlockHeader*)((char*)(header + 1) + header->size);
+
+    if ((void*)next < heap_end && next->free ) {
+        header->size += next->size + sizeof(BlockHeader);
+    }
+
 }
 
 int main() {
@@ -125,6 +130,24 @@ int main() {
     assert(p8 == p6);
 
     cout << "Stage 4 is over" << endl;
+
+    cout << "----------------------------" << endl;
+
+    void* p9 = my_malloc(1024);
+    void* p10 = my_malloc(1024);
+
+    my_free(p10);
+    my_free(p9);
+
+
+    BlockHeader* h9 = (BlockHeader*)p9 - 1;
+    assert(h9->size == 1024 + 1024 + sizeof(BlockHeader));
+    assert(h9->free == true);
+
+    void* p11 = my_malloc(2000);
+    assert(p11 == p9);
+
+    cout << "Stage 5 is over" << endl;
 
     return 0;
 }
