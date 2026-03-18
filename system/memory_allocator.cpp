@@ -47,21 +47,24 @@ void* extend_heap(size_t size) {
     return (void*)(header + 1);
 }
 
-
+// void* -> this allocator function doesn't recognize what the type comes out
 void* my_malloc(size_t size) {
     // traverse blocks
     BlockHeader* current = (BlockHeader*)heap_start;
 
+    // Keep going until we hit the end of heap and making current and heap_and the same type
     while ((void*)current < heap_end) {
         if (current->free && current->size >= size) {
             current->free = false;  // mark as used
             return (void*)(current + 1);  // return data part
         }
         // move to next block
+        // Without 'char*', current->size follows just the type of 'current'. It can lead to 1024(size) * type size 16 bytes(Blockhead)
+        // With 'char*', current->size follows char*. It can lead to 1024(size) * type size 1 byte(char)
         current = (BlockHeader*)((char*)(current + 1) + current->size);
     }
 
-    // no free block found
+    // No free block found -> taking new space for the size
     return extend_heap(size);
 }
 
@@ -107,8 +110,6 @@ int main() {
     void* p5 = my_malloc(512);
     assert(p5 == p3);
 
-    cout << "Stage 4 is over" << endl;
-
     cout << "Stage 3 is over" << endl;
 
     cout << "----------------------------" << endl;
@@ -122,6 +123,8 @@ int main() {
 
     void* p8 = my_malloc(512);
     assert(p8 == p6);
+
+    cout << "Stage 4 is over" << endl;
 
     return 0;
 }
