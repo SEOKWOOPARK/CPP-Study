@@ -35,6 +35,7 @@ void* extend_heap(size_t size) {
 
     BlockHeader* header = (BlockHeader*)prev_break; // casting
     // Compiler needs to know the layout of memory at that address.
+    // 'header' has 16 bytes size from most front of header address meaning prev_break
 
     header->size = size; // compiler knows where size field is
     header->free = false; // compiler knows where free field is
