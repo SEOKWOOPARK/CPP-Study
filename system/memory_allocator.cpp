@@ -34,8 +34,10 @@ void* extend_heap(size_t size) {
     void* prev_break = sbrk(size + sizeof(BlockHeader));
 
     BlockHeader* header = (BlockHeader*)prev_break; // casting
-    header->size = size;
-    header->free = false;
+    // Compiler needs to know the layout of memory at that address.
+
+    header->size = size; // compiler knows where size field is
+    header->free = false; // compiler knows where free field is
 
     heap_end = sbrk(0);
 
