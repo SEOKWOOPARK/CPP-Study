@@ -17,7 +17,7 @@ void* heap_end = nullptr;
 struct BlockHeader {
     size_t size; // 8 bytes
     bool free; // 1 byte
-    // padding 7 bytes since compiler adds 7 bytes for alignemnt
+    // padding 7 bytes since compiler adds 7 bytes for alignment
 };
 
 void* extend_heap(size_t size) {
