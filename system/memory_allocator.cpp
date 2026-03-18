@@ -65,6 +65,16 @@ void* my_malloc(size_t size) {
     return extend_heap(size);
 }
 
+void my_free(void* ptr) {
+    if (ptr == nullptr) {
+        return;
+    }
+
+    BlockHeader* header = (BlockHeader*)ptr - 1;
+
+    header->free = true;
+}
+
 int main() {
     // pointer variable in stack
     void* p1 = extend_heap(1024);
@@ -97,7 +107,21 @@ int main() {
     void* p5 = my_malloc(512);
     assert(p5 == p3);
 
+    cout << "Stage 4 is over" << endl;
+
     cout << "Stage 3 is over" << endl;
+
+    cout << "----------------------------" << endl;
+
+    void* p6 = my_malloc(1024);
+    void* p7 = my_malloc(512);
+
+    my_free(p6);
+    BlockHeader* h6 = (BlockHeader*)p6 - 1;
+    assert(h6->free == true);
+
+    void* p8 = my_malloc(512);
+    assert(p8 == p6);
 
     return 0;
 }
