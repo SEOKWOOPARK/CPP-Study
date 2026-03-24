@@ -92,7 +92,6 @@ int main() {
 
     cout << "p1: " << p1 << endl;
     cout << "p2: " << p2 << endl;
-
     cout << "Stage 1 is over" << endl;
 
     cout << "----------------------------" << endl;
@@ -138,7 +137,6 @@ int main() {
 
     my_free(p10);
     my_free(p9);
-
 
     BlockHeader* h9 = (BlockHeader*)p9 - 1;
     assert(h9->size == 1024 + 1024 + sizeof(BlockHeader));
