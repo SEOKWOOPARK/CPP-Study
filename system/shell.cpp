@@ -39,12 +39,10 @@ int main() {
         pid_t pid = fork();
 
         if (pid == 0) {
-            cout << "Child's pid = " << getpid() << endl;
-
             vector<char*> args;
 
             for (auto& t: tokens) {
-                args.push_back(t.data());
+                args.push_back(const_cast<char*>(t.data()));
             }
 
             args.push_back(nullptr);
