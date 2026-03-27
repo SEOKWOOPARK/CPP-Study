@@ -33,6 +33,9 @@ int main() {
             continue;
         }
 
+        // Process id from <unistd.h>
+        // Creating a copy of the current process
+        // fork() doesn't return child's pid itself.
         pid_t pid = fork();
 
         if (pid == 0) {
