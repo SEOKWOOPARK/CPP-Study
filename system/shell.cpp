@@ -20,10 +20,12 @@ int main() {
         }
 
         vector<string> tokens;
+
+        // Reading from a string instead of keyboard
         istringstream ss(line);
         string token;
 
-        while (ss >> token) {
+        while (ss >> token) { // >> operator reads one word at a time while skipping whitespace
             tokens.push_back(token);
         }
 
