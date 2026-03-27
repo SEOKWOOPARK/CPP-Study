@@ -39,6 +39,8 @@ int main() {
         pid_t pid = fork();
 
         if (pid == 0) {
+            cout << "Child pid = " << getpid() << endl;
+
             vector<char*> args;
 
             for (auto& t: tokens) {
