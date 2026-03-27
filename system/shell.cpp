@@ -47,6 +47,7 @@ int main() {
                 args.push_back(const_cast<char*>(t.data()));
             }
 
+            // To make args = ["ls", "-la", nullptr] and inform of end for execvp.
             args.push_back(nullptr);
             execvp(args[0],args.data());
             perror("execvp");
