@@ -10,6 +10,7 @@ using namespace std;
 int main() {
 
     while (true) {
+        // flush -> immediately printed to screen and waits for user input
         cout << "$ " << flush;
 
         string line;
