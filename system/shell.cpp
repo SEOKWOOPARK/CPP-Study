@@ -49,7 +49,7 @@ int main() {
 
             // To make args = ["ls", "-la", nullptr] and inform of end for execvp.
             args.push_back(nullptr);
-            execvp(args[0],args.data());
+            execvp(args[0],args.data()); // The address of first element in args(vector)
             perror("execvp");
             exit(1);
         } else {
