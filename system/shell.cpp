@@ -7,6 +7,12 @@
 
 using namespace std;
 
+// Option in system level = additional settings passed to a program
+// ls        → just list files
+// ls -l     → list with details
+// ls -la    → list with details + hidden files
+// ls -la /home → list /home directory
+
 int main() {
 
     while (true) {
