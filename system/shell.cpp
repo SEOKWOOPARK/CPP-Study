@@ -55,6 +55,8 @@ int main() {
 
             // To make args = ["ls", "-la", nullptr] and inform of end for execvp.
             args.push_back(nullptr);
+
+            // execvp(char*, char**) -> Replacing the current process(shell code copy) with another program(ls, ls -la) and run it.
             execvp(args[0],args.data()); // The address of first element in args(vector)
             perror("execvp");
             exit(1);
@@ -62,5 +64,4 @@ int main() {
             waitpid(pid, nullptr, 0);
         }
     }
-
 }
