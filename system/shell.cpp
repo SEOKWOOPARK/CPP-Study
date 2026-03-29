@@ -59,7 +59,7 @@ int main() {
             // execvp(char*, char**) -> Replacing the current process(shell code copy) with another program(ls, ls -la) and run it.
             execvp(args[0],args.data()); // The address of first element in args(vector)
             perror("execvp");
-            exit(1);
+            exit(1); // Forcing terminate the child process.
         } else {
             waitpid(pid, nullptr, 0);
         }
