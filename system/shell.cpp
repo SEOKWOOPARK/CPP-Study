@@ -53,9 +53,13 @@ int main() {
         }
 
         if (tokens[0] == "cd") {
-            if (tokens.size() < 2) {
+            if (tokens.size() < 2) { // 'cd' expects a specific destination like 'cd /something'
+                // error message output stream
                 cerr << "cd: too few arguments\n";
             } else {
+                // Changing current directory of the shell process
+                // chdir("/something") -> shell's current directory becomes /something
+                // c_str(): converting string to const char* since chdir() requires 'const char*'
                 chdir(tokens[1].c_str());
             }
 
