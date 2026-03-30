@@ -13,6 +13,7 @@ using namespace std;
 // ls -la    → list with details + hidden files
 // ls -la /home → list /home directory
 
+// Preventing the shell from dying when running a command
 int main() {
 
     while (true) {
