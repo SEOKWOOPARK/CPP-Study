@@ -48,13 +48,27 @@ int main() {
             continue;
         }
 
+        if (tokens[0] == "exit") {
+            exit(0);
+        }
+
+        if (tokens[0] == "cd") {
+            if (tokens.size() < 2) {
+                cerr << "cd: too few arguments\n";
+            } else {
+                chdir(tokens[1].c_str());
+            }
+
+            continue;
+        }
+
         // Process id from <unistd.h>
         // Creating a copy of the current process
         // fork() doesn't return child's pid itself.
         pid_t pid = fork();
 
         if (pid == 0) {
-            cout << "Child pid = " << getpid() << endl;
+            // cout << "Child pid = " << getpid() << endl;
 
             vector<char*> args;
 
@@ -69,10 +83,6 @@ int main() {
             execvp(args[0],args.data()); // The address of first element in args(vector)
             perror("execvp");
             exit(1); // Forcing terminate the child process.
-
-            if (args[0] == 'cd') {
-
-            }
         } else {
             waitpid(pid, nullptr, 0);
         }
