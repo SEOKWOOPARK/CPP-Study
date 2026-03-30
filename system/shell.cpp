@@ -7,6 +7,14 @@
 
 using namespace std;
 
+// A fully functional shell that supports:
+// $ ls -la
+// $ cd /tmp
+// $ exit
+// $ ls > out.txt
+// $ cat < out.txt
+// $ ls | grep .cpp
+
 // Option in system level = additional settings passed to a program
 // ls        → just list files
 // ls -l     → list with details
@@ -61,6 +69,10 @@ int main() {
             execvp(args[0],args.data()); // The address of first element in args(vector)
             perror("execvp");
             exit(1); // Forcing terminate the child process.
+
+            if (args[0] == 'cd') {
+
+            }
         } else {
             waitpid(pid, nullptr, 0);
         }
