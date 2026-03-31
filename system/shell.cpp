@@ -74,7 +74,6 @@ int main() {
         // $ cat < out.txt
         // $ echo hello > out.txt
         // $ cat < out.txt
-
         for (int i = 0; i < tokens.size(); i++) {
             if (tokens[i] == ">" && i + 1 < tokens.size()) {
                 out_file = tokens[i + 1];
