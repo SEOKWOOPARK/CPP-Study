@@ -8,6 +8,14 @@
 
 using namespace std;
 
+// OS assigns a number to every open file (file descriptor as 'fd' = A number that represents an open file)
+// 0 = stdin  (keyboard)
+// 1 = stdout (screen)
+// 2 = stderr (screen)
+// 3 = some other file already open / here, 3 is identical to out.txt / open() returns this
+// 4 = next file...
+
+
 // A fully functional shell that supports:
 // $ ls -la
 // $ cd /tmp
