@@ -4,6 +4,7 @@
 #include <sstream>
 #include <iostream>
 #include <string>
+#include <fcntl.h>
 
 using namespace std;
 
@@ -66,6 +67,23 @@ int main() {
             continue;
         }
 
+        string out_file, in_file;
+
+        for (int i = 0; i < tokens.size(); i++) {
+            if (tokens[i] == ">" && i + 1 < tokens.size()) {
+                out_file = tokens[i + 1];
+                tokens.erase(tokens.begin() + i, tokens.begin() + i + 2);
+                break;
+            }
+
+            if (tokens[i] == ">" && i + 1 < tokens.size()) {
+                in_file = tokens[i + 1];
+                tokens.erase(tokens.begin() + i, tokens.begin() + i + 2);
+                break;
+            }
+
+        }
+
         // Process id from <unistd.h>
         // Creating a copy of the current process
         // fork() doesn't return child's pid itself.
@@ -73,6 +91,17 @@ int main() {
 
         if (pid == 0) {
             // cout << "Child pid = " << getpid() << endl;
+
+            if (!out_file.empty()) {
+                int fd = open(out_file.c_str(), O_WRONLY | O_CREAT | O_TRUNC, 0644);
+                dup2(fd, 1);
+                close(fd);
+            }
+            if (!in_file.empty()) {
+                int fd = open(in_file.c_str(), O_RDONLY);
+                dup2(fd, 0);
+                close(fd);
+            }
 
             vector<char*> args;
 
