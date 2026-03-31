@@ -98,9 +98,9 @@ int main() {
             // cout << "Child pid = " << getpid() << endl;
 
             if (!out_file.empty()) {
-                int fd = open(out_file.c_str(), O_WRONLY | O_CREAT | O_TRUNC, 0644);
-                dup2(fd, 1);
-                close(fd);
+                int fd = open(out_file.c_str(), O_WRONLY | O_CREAT | O_TRUNC, 0644); // open a file, get file descriptor
+                dup2(fd, 1); // redirect file descriptor
+                close(fd); // close file descriptor
             }
             if (!in_file.empty()) {
                 int fd = open(in_file.c_str(), O_RDONLY);
