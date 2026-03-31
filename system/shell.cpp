@@ -70,10 +70,10 @@ int main() {
         string out_file, in_file;
 
         // 4 test cases for '<,>'
-        // $ ls > out.txt
-        // $ cat < out.txt
-        // $ echo hello > out.txt
-        // $ cat < out.txt
+        // $ ls > out.txt: all files in the current directory (writing) -> out.txt
+        // $ cat < out.txt: all strings from out.txt (reading)
+        // $ echo hello > out.txt: 'hello' (overwriting) -> out.txt
+        // $ cat < out.txt: validation
         for (int i = 0; i < tokens.size(); i++) {
             if (tokens[i] == ">" && i + 1 < tokens.size()) {
                 out_file = tokens[i + 1];
