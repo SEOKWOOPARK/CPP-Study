@@ -89,12 +89,11 @@ int main() {
                 break;
             }
 
-            if (tokens[i] == ">" && i + 1 < tokens.size()) {
+            if (tokens[i] == "<" && i + 1 < tokens.size()) {
                 in_file = tokens[i + 1];
                 tokens.erase(tokens.begin() + i, tokens.begin() + i + 2);
                 break;
             }
-
         }
 
         // Process id from <unistd.h>
