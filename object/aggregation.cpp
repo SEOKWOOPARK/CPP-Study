@@ -4,6 +4,8 @@
 
 using namespace std;
 
+// Aggregation: Parent only refer to the child. Child survives even though parent's death
+
 class Teacher {
 private:
     string m_name{};
@@ -18,7 +20,7 @@ public:
 
 class Department {
 private:
-    const Teacher& m_teacher;
+    const Teacher& m_teacher; // reference -> no ownership
 public:
     Department(const Teacher& teacher): m_teacher(teacher) {}
 
