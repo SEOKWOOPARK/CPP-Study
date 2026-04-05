@@ -31,7 +31,7 @@ int main() {
 
     {
         Department department{bob};
-    }
+    } // Department is destroyed in this part.
 
     cout << bob.getName() << " Still exists!" << endl;
 
