@@ -22,6 +22,10 @@ class Department {
 private:
     const Teacher& m_teacher; // reference -> no ownership
 public:
+    // parameter: 'Teacher' by const reference
+    // Reference members must be initialized in the initializer list before {} runs
+    // By the time {} starts running, all members are expected to already exist and be initialized
+    // initializer list: initialize m_teacher with 'teacher'
     Department(const Teacher& teacher): m_teacher(teacher) {}
 
 };
