@@ -11,6 +11,7 @@ private:
     string m_name{};
 
 public:
+    // string_view: Read-only window into a string. Just points to, owns nothing
     Teacher(string_view name): m_name{name} {}
 
     const string& getName() const {
