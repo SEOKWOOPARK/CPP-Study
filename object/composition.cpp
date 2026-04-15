@@ -5,6 +5,9 @@
 using namespace std;
 
 // Composition is when one object owns another object as a part of itself.
+// The part belongs to the whole
+// The part is created and destroyed with the whole
+// The part can't exist independently
 
 class Heart {
 private:
@@ -21,7 +24,7 @@ public:
 class Person {
 private:
     string m_name{};
-    Heart m_heart;
+    Heart m_heart; //
 
 public:
     Person(string_view name, int bpm)
@@ -34,7 +37,7 @@ public:
 };
 
 int main() {
-    Person alice{"Alice", 52};
+    Person alice{"Alice", 52}; // Heart is created inside alice
     alice.live();
 
     return 0;
