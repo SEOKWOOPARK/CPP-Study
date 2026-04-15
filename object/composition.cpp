@@ -4,6 +4,8 @@
 
 using namespace std;
 
+// Composition is when one object owns another object as a part of itself.
+
 class Heart {
 private:
     int m_bpm{};
