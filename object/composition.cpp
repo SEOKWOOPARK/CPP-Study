@@ -16,6 +16,10 @@ private:
 public:
     Heart(int bpm): m_bpm{bpm} {}
 
+    ~Heart() {
+        cout << "Heart is dead...." << endl;
+    }
+
     void beat() const {
         cout << "Heart beating at " << m_bpm << " bpm" << endl;
     }
@@ -24,7 +28,7 @@ public:
 class Person {
 private:
     string m_name{};
-    Heart m_heart; //
+    Heart m_heart;
 
 public:
     Person(string_view name, int bpm)
@@ -39,6 +43,12 @@ public:
 int main() {
     Person alice{"Alice", 52}; // Heart is created inside alice
     alice.live();
+
+
+    {
+        Person bob{"Bob", 60};
+        bob.live();
+    } // bob's Heart is destroyed together with bob
 
     return 0;
 }
