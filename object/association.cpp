@@ -5,6 +5,9 @@
 
 using namespace std;
 
+// Association is when two objects know about each other, but neither owns the other.
+
+
 class Patient;  // forward declaration
 
 class Doctor {
