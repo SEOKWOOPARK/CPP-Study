@@ -41,6 +41,7 @@ public:
 
     const string& getName() const { return m_name; }
 
+    // Function without modifying the object. When changing variables inside the class, compiler error can happen
     void listDoctor() const {
         if (m_doctor)
             cout << m_name << "'s doctor: " << m_doctor->getName() << endl;
