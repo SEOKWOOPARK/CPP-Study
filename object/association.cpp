@@ -13,7 +13,7 @@ class Patient;  // forward declaration
 class Doctor {
 private:
     string m_name{};
-    vector<Patient*> m_patients{};
+    vector<Patient*> m_patients{}; // Doctor knows about Patient by a pointer
 
 public:
     Doctor(string_view name): m_name{name} {}
@@ -30,7 +30,7 @@ public:
 class Patient {
 private:
     string m_name{};
-    Doctor* m_doctor{};
+    Doctor* m_doctor{}; // Patient knows about Doctor by a pointer
 
 public:
     Patient(string_view name): m_name{name} {}
