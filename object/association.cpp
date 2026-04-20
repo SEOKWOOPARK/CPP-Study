@@ -39,6 +39,7 @@ public:
         m_doctor = doctor;
     }
 
+    // The returned reference is read-only -> Caller can't change m_name through it
     const string& getName() const { return m_name; }
 
     // Function without modifying the object. When changing variables inside the class, compiler error can happen
