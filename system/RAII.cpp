@@ -5,6 +5,10 @@
 
 using namespace std;
 
+// RAII: Resource Acquisition Is Initialization.
+// Tie resources like file, memory, socket or mutex to an object's lifetime
+
+
 // RAII wrapper for a file
 class FileHandler {
 private:
