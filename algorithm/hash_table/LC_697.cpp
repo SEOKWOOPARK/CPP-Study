@@ -13,6 +13,7 @@ public:
 
         for (int i = 0; i < a.size(); ++i) {
             int x = a[i];
+
             if (!first.count(x)) {
                 first[x] = i;
             }
